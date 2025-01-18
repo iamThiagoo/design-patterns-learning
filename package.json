@@ -1,0 +1,11 @@
+{
+  "scripts": {
+    "build": "tsc",
+    "start": "node ./dist/index.js",
+    "test": "jest --passWithNoTests"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "typescript": "^5.7.3"
+  }
+}

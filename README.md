@@ -1,0 +1,1 @@
+Repositório para conteúdo de Design Patterns com Typescript
