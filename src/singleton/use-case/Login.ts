@@ -1,4 +1,5 @@
-import UserRepository, { UserRepositoryMemory } from "./repository/UserRepository";
+import UserRepository, { UserRepositoryMemory } from "../repository/UserRepository";
+
 
 type Input = {
     email: string,
