@@ -1,73 +1,77 @@
-import currency from "currency.js";
-import Loan from "../Loan";
-import Installment from "../Installment";
+import currency from 'currency.js';
+import Loan from '../Loan';
+import Installment from '../Installment';
 
 export default interface InstallmentCalculator {
-	calculate (loan: Loan): Installment[];
+  calculate(loan: Loan): Installment[];
 }
 
 export class SACInstallmentCalculator implements InstallmentCalculator {
-	calculate(loan: Loan): Installment[] {
-		const rate = (loan.rate / 100) / 12;
-		const installments: Installment[] = [];
-		
-		let balance = currency(loan.amount);
-		let installmentNumber = 1;
-		let amortization = currency(balance.value / loan.installments);
+  calculate(loan: Loan): Installment[] {
+    const rate = loan.rate / 100 / 12;
+    const installments: Installment[] = [];
 
-		while (balance.value > 0.10) {
-			let interest = currency(balance.value * rate);
-			let updatedBalance = currency(balance.value + interest.value);
-			let amount = currency(interest.value + amortization.value);
-			balance = currency(updatedBalance.value - amount.value);
+    let balance = currency(loan.amount);
+    let installmentNumber = 1;
+    let amortization = currency(balance.value / loan.installments);
 
-			if (balance.value < 0.10) balance = currency(0);
+    while (balance.value > 0.1) {
+      let interest = currency(balance.value * rate);
+      let updatedBalance = currency(balance.value + interest.value);
+      let amount = currency(interest.value + amortization.value);
+      balance = currency(updatedBalance.value - amount.value);
 
-			installments.push(new Installment(
-				loan.loanId,
-				installmentNumber,
-				amount.value,
-				amortization.value,
-				interest.value,
-				balance.value
-			));
+      if (balance.value < 0.1) balance = currency(0);
 
-			installmentNumber++;
-		}
+      installments.push(
+        new Installment(
+          loan.loanId,
+          installmentNumber,
+          amount.value,
+          amortization.value,
+          interest.value,
+          balance.value,
+        ),
+      );
 
-		return installments;
-	}
+      installmentNumber++;
+    }
+
+    return installments;
+  }
 }
 
 export class PriceInstallmentCalculator implements InstallmentCalculator {
-	calculate(loan: Loan): Installment[] {
-		const rate = (loan.rate / 100) / 12;
-		const installments: Installment[] = [];
-		const formula = Math.pow((1 + rate), loan.installments);
-		
-		let balance = currency(loan.amount);
-		let installmentNumber = 1;
-		let amount = balance.multiply((formula * rate) / (formula - 1));
+  calculate(loan: Loan): Installment[] {
+    const rate = loan.rate / 100 / 12;
+    const installments: Installment[] = [];
+    const formula = Math.pow(1 + rate, loan.installments);
 
-		while (balance.value > 2) {
-			let interest = balance.multiply(rate);
-			let amortization = amount.subtract(interest);
-			balance = balance.subtract(amortization);
+    let balance = currency(loan.amount);
+    let installmentNumber = 1;
+    let amount = balance.multiply((formula * rate) / (formula - 1));
 
-			if (balance.value < 2) balance = currency(0);
+    while (balance.value > 2) {
+      let interest = balance.multiply(rate);
+      let amortization = amount.subtract(interest);
+      balance = balance.subtract(amortization);
 
-			installments.push(new Installment(
-				loan.loanId,
-				installmentNumber,
-				amount.value,
-				amortization.value,
-				interest.value,
-				balance.value
-			));
+      if (balance.value < 2) balance = currency(0);
 
-			installmentNumber++;
-		}
+      installments.push(
+        new Installment(
+          loan.loanId,
+          installmentNumber,
+          amount.value,
+          amortization.value,
+          interest.value,
+          balance.value,
+        ),
+      );
 
-		return installments;
-	}
+      installmentNumber++;
+    }
+
+    return installments;
+  }
 }

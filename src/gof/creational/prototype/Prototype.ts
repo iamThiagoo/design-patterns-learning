@@ -1,3 +1,3 @@
 export default interface Prototype {
-    clone(): Prototype;
+  clone(): Prototype;
 }
