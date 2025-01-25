@@ -1,5 +1,5 @@
-import Login from "../../src/singleton/use-case/Login";
-import Signup from "../../src/singleton/use-case/Signup";
+import Login from "../../../../src/gof/creational/singleton/use-case/Login";
+import Signup from "../../../../src/gof/creational/singleton/use-case/Signup";
 
 test("Deve criar uma conta de usuário", async() => {
     const signup = new Signup();

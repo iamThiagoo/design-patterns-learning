@@ -1,6 +1,6 @@
-import Form from "../../src/prototype/Form";
-import { FormRepositoryMemory } from "../../src/prototype/repository/FormRepository";
-import CopyForm from "../../src/prototype/use-case/CopyForm";
+import Form from "../../../../src/gof/creational/prototype/Form";
+import { FormRepositoryMemory } from "../../../../src/gof/creational/prototype/repository/FormRepository";
+import CopyForm from "../../../../src/gof/creational/prototype/use-case/CopyForm";
 
 test("Deve copiar um formulário", async function () {
 	const formRepository = new FormRepositoryMemory();

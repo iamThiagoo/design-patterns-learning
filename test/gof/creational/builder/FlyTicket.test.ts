@@ -1,5 +1,5 @@
-import FlightTicket from "../../src/builder/FlightTicket";
-import FlightTicketBuilder from "../../src/builder/FlightTicketBuilder";
+import FlightTicket from "../../../../src/gof/creational/builder/FlightTicket";
+import FlightTicketBuilder from "../../../../src/gof/creational/builder/FlightTicketBuilder";
 
 test("Deve criar uma passagem aérea", () => {
     const builder = new FlightTicketBuilder()
