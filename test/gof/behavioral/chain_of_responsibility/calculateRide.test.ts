@@ -1,4 +1,4 @@
-import { calculateFare } from "../../../src/gof/behavioral/chain_of_responsibility/calculateRide";
+import { calculateFare } from "../../../../src/gof/behavioral/chain_of_responsibility/calculateRide";
 
 test("Deve calcular o valor da corrida no horário normal", function () {
 	const segments = [

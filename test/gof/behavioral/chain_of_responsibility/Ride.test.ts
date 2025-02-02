@@ -1,5 +1,5 @@
-import { NormalFareCalculator, OvernightFareCalculator, OvernightSundayFareCalculator, SundayFareCalculator } from "../../../src/gof/behavioral/chain_of_responsibility/FareCalculator";
-import Ride from "../../../src/gof/behavioral/chain_of_responsibility/Ride";
+import { NormalFareCalculator, OvernightFareCalculator, OvernightSundayFareCalculator, SundayFareCalculator } from "../../../../src/gof/behavioral/chain_of_responsibility/FareCalculator";
+import Ride from "../../../../src/gof/behavioral/chain_of_responsibility/Ride";
 
 let ride: Ride;
 
