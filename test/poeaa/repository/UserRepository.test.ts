@@ -29,7 +29,7 @@ test('Deve atualizar um usuário', async function () {
   await userRepository.update(savedUser);
   const updatedUser = await userRepository.getByEmail(email);
   expect(updatedUser.getPassword()).toBe('asd456789');
-  
+
   await userRepository.delete(email);
 });
 

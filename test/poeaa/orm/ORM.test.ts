@@ -7,7 +7,7 @@ test('Deve testar o ORM', async function () {
   const connection = new PgPromiseAdapter();
   const orm = new ORM(connection);
   const accountId = crypto.randomUUID();
-  
+
   const account = new AccountModel(accountId, 'a', 'b', 'c', 'd');
   await orm.save(account);
 
