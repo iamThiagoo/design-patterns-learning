@@ -19,6 +19,7 @@
   "dependencies": {
     "@hapi/hapi": "^21.3.12",
     "axios": "^1.7.9",
+    "crypto": "^1.0.1",
     "currency.js": "^2.0.4",
     "express": "^4.21.2",
     "node-fetch": "2",
